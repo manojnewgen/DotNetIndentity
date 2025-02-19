@@ -1,0 +1,13 @@
+@RoleClaimsApp_HostAddress = http://localhost:5148
+
+GET {{RoleClaimsApp_HostAddress}}/weatherforecast/
+Accept: application/json
+
+
+
+###
+
+GET http://localhost:5148/api/users/role-based
+
+###
+GET http://localhost:5148/api/users/role-based
