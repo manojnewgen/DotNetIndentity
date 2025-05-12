@@ -1,0 +1,34 @@
+
+# A GitHub Actions workflow for a Dotnet core app that installs dependencies, runs tests, and deploys the app
+
+name: CI/CD Pipeline
+
+on:
+  push:
+	branches:
+	  - main
+  pull_request:
+	branches:
+	  - main
+
+jobs:
+  build:
+	runs-on: ubuntu-latest
+
+	steps:
+	- name: Checkout code
+	  uses: actions/checkout@v3
+
+	- name: Setup .NET
+	  uses: actions/setup-dotnet@v3
+	  with:
+		dotnet-version: '6.0.x'
+
+	- name: Install dependencies
+	  run: dotnet restore
+
+	- name: Build the project
+	  run: dotnet build --no-restore --configuration Release
+
+	- name: Run tests
+	  run: dotnet test --no-build --verbosity normal
